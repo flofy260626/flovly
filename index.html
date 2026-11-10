@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatur & Lyvia - Our Love Story</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #fff5f7; color: #4a4044; overflow-x: hidden; }
+        .font-script { font-family: 'Sacramento', cursive; }
+        .heart-bg {
+            background-image: radial-gradient(#ffccd5 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+        }
+        .floating { animation: float 4s ease-in-out infinite; }
+    </style>
+</head>
+<body class="heart-bg min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 pb-12">
+
+    <!-- Header / Navigasi Simpel -->
+    <header class="w-full max-w-md text-center py-4">
+        <span class="text-xs uppercase tracking-widest text-rose-400 font-semibold bg-rose-100 px-3 py-1 rounded-full">Our Special Space</span>
+    </header>
+
+    <!-- KONTEN UTAMA: HALAMAN UTAMA -->
+    <main class="w-full max-w-md bg-white/80 backdrop-blur-md rounded-3xl shadow-xl p-6 sm:p-8 text-center border border-rose-100 my-4">
+        
+        <!-- Judul Nama -->
+        <h1 class="font-script text-5xl sm:text-6xl text-rose-500 mb-1">Fatur & Lyvia</h1>
+        <p class="text-xs text-rose-300 tracking-widest uppercase mb-6">Since June 26, 2026</p>
+
+        <!-- Bingkai Foto Utama -->
+        <div class="relative w-48 h-48 sm:w-56 sm:h-56 mx-auto mb-6 rounded-2xl overflow-hidden shadow-md border-4 border-white floating group">
+            <img id="previewImage" src="utama.jpg" onError="this.src='https://images.unsplash.com/photo-1518568814500-bf09bbec8fc0?q=80&w=600&auto=format&fit=crop'" alt="Fatur & Lyvia" class="w-full h-full object-cover">
+            <label for="uploadPhoto" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs cursor-pointer p-2 text-center">
+                Ketuk untuk ganti foto utama
+            </label>
+            <input type="file" id="uploadPhoto" accept="image/*" class="hidden" onchange="loadPhoto(event)">
+        </div>
+
+        <!-- Kutipan Romantis Bahasa Inggris -->
+        <div class="bg-rose-50/60 p-4 rounded-2xl mb-6 border border-rose-100">
+            <h2 class="text-sm font-semibold text-rose-600 mb-1">✨ My Favorite Person ✨</h2>
+            <p class="text-xs sm:text-sm text-gray-600 italic leading-relaxed">
+                "You are my favorite person, my safe place, and the home I never knew I needed."
+            </p>
+        </div>
+
+        <!-- Love Counter (Hitung Hari) -->
+        <div class="mb-6">
+            <p class="text-xs text-gray-400 uppercase tracking-wider mb-2">We have been together for:</p>
+            <div class="grid grid-cols-4 gap-2 text-rose-600">
+                <div class="bg-rose-50 p-2 rounded-xl">
+                    <span id="days" class="block text-lg font-bold">0</span>
+                    <span class="text-[10px] text-gray-500 uppercase">Days</span>
+                </div>
+                <div class="bg-rose-50 p-2 rounded-xl">
+                    <span id="hours" class="block text-lg font-bold">0</span>
+                    <span class="text-[10px] text-gray-500 uppercase">Hours</span>
+                </div>
+                <div class="bg-rose-50 p-2 rounded-xl">
+                    <span id="minutes" class="block text-lg font-bold">0</span>
+                    <span class="text-[10px] text-gray-500 uppercase">Mins</span>
+                </div>
+                <div class="bg-rose-50 p-2 rounded-xl">
+                    <span id="seconds" class="block text-lg font-bold">0</span>
+                    <span class="text-[10px] text-gray-500 uppercase">Secs</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tombol Pesan Rahasia -->
+        <button onclick="toggleModal()" class="w-full bg-gradient-to-r from-rose-400 to-pink-500 text-white py-3 rounded-xl font-medium text-sm shadow-lg shadow-rose-200 hover:opacity-95 transition">
+            💌 Buka Pesan Rahasia Fatur
+        </button>
+    </main>
+
+    <!-- SECTION GALERI FOTO KENANGAN -->
+    <section class="w-full max-w-md bg-white/80 backdrop-blur-md rounded-3xl shadow-xl p-6 border border-rose-100 my-4 text-center">
+        <h2 class="font-script text-4xl text-rose-500 mb-1">Our Precious Moments</h2>
+        <p class="text-xs text-gray-400 mb-6">Koleksi Kenangan Manis Fatur & Lyvia</p>
+
+        <!-- Grid Foto Galeri -->
+        <div id="galleryGrid" class="grid grid-cols-2 gap-3 mb-6">
+            <!-- Foto 1 -->
+            <div class="relative rounded-2xl overflow-hidden shadow group aspect-square cursor-pointer" onclick="zoomImage(this)">
+                <img src="foto1.jpg" class="w-full h-full object-cover transition duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-90 flex items-end p-2">
+                    <span class="text-[10px] text-white font-medium">🏞️ Waterfall Trip</span>
+                </div>
+            </div>
+
+            <!-- Foto 2 -->
+            <div class="relative rounded-2xl overflow-hidden shadow group aspect-square cursor-pointer" onclick="zoomImage(this)">
+                <img src="foto2.jpg" class="w-full h-full object-cover transition duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-90 flex items-end p-2">
+                    <span class="text-[10px] text-white font-medium">📱 Sweet Together</span>
+                </div>
+            </div>
+
+            <!-- Foto 3 -->
+            <div class="relative rounded-2xl overflow-hidden shadow group aspect-square cursor-pointer" onclick="zoomImage(this)">
+                <img src="foto3.jpg" class="w-full h-full object-cover transition duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-90 flex items-end p-2">
+                    <span class="text-[10px] text-white font-medium">🐥 Funny Moments</span>
+                </div>
+            </div>
+
+            <!-- Foto 4 -->
+            <div class="relative rounded-2xl overflow-hidden shadow group aspect-square cursor-pointer" onclick="zoomImage(this)">
+                <img src="foto4.jpg" class="w-full h-full object-cover transition duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-90 flex items-end p-2">
+                    <span class="text-[10px] text-white font-medium">🥸 Cute Filter</span>
+                </div>
+            </div>
+
+            <!-- Foto 5 -->
+            <div class="relative rounded-2xl overflow-hidden shadow group aspect-square cursor-pointer col-span-2" onclick="zoomImage(this)">
+                <img src="foto5.jpg" class="w-full h-48 object-cover transition duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-90 flex items-end p-2">
+                    <span class="text-[10px] text-white font-medium">✨ Our Memories</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tombol Tambah Foto Baru ke Galeri -->
+        <label for="addGalleryPhoto" class="inline-flex items-center justify-center gap-2 w-full border-2 border-dashed border-rose-300 text-rose-500 py-3 rounded-2xl text-xs font-semibold cursor-pointer hover:bg-rose-50 transition">
+            📷 Tambah Foto Kenangan Lainnya
+        </label>
+        <input type="file" id="addGalleryPhoto" accept="image/*" class="hidden" onchange="addGalleryImage(event)">
+    </section>
+
+    <!-- Footer -->
+    <footer class="w-full max-w-md text-center py-4 text-xs text-rose-400">
+        Made with ❤️ for Lyvia
+    </footer>
+
+    <!-- Modal Pesan Rahasia -->
+    <div id="loveModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center relative shadow-2xl">
+            <h3 class="font-script text-3xl text-rose-500 mb-3">Dear Lyvia,</h3>
+            <p class="text-sm text-gray-
